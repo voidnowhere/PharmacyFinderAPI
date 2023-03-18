@@ -1,4 +1,4 @@
-package dev.voidnowhere.pharmacymanagement.enums;
+package dev.voidnowhere.pharmacymanagementapi.enums;
 
 public enum WeekDayEnum {
     SUNDAY,

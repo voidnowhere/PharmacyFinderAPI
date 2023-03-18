@@ -1,6 +1,6 @@
-package dev.voidnowhere.pharmacymanagement.repositories;
+package dev.voidnowhere.pharmacymanagementapi.repositories;
 
-import dev.voidnowhere.pharmacymanagement.entities.Zone;
+import dev.voidnowhere.pharmacymanagementapi.entities.Zone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package dev.voidnowhere.pharmacymanagement.entities;
+package dev.voidnowhere.pharmacymanagementapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

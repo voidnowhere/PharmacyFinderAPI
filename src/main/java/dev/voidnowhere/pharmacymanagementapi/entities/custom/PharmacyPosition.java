@@ -1,4 +1,4 @@
-package dev.voidnowhere.pharmacymanagement.entities.custom;
+package dev.voidnowhere.pharmacymanagementapi.entities.custom;
 
 public class PharmacyPosition {
     private Float latitude;

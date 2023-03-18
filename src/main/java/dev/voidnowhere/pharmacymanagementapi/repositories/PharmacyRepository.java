@@ -1,8 +1,8 @@
-package dev.voidnowhere.pharmacymanagement.repositories;
+package dev.voidnowhere.pharmacymanagementapi.repositories;
 
-import dev.voidnowhere.pharmacymanagement.entities.Pharmacy;
-import dev.voidnowhere.pharmacymanagement.entities.custom.PharmacyPosition;
-import dev.voidnowhere.pharmacymanagement.enums.WeekDayEnum;
+import dev.voidnowhere.pharmacymanagementapi.entities.Pharmacy;
+import dev.voidnowhere.pharmacymanagementapi.entities.custom.PharmacyPosition;
+import dev.voidnowhere.pharmacymanagementapi.enums.WeekDayEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -22,6 +22,6 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
     )
     List<Pharmacy> findAllAvailableByZoneId(Long zone_id, LocalTime time, WeekDayEnum weekDay);
 
-    @Query("select new dev.voidnowhere.pharmacymanagement.entities.custom.PharmacyPosition(p.latitude, p.longitude) from Pharmacy p where p.id = :id")
+    @Query("select new dev.voidnowhere.pharmacymanagementapi.entities.custom.PharmacyPosition(p.latitude, p.longitude) from Pharmacy p where p.id = :id")
     PharmacyPosition getPosition(Long id);
 }

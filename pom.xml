@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dev.voidnowhere</groupId>
-    <artifactId>PharmacyManagement</artifactId>
+    <artifactId>PharmacyManagementAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PharmacyManagement</name>
-    <description>PharmacyManagement</description>
+    <name>PharmacyManagementAPI</name>
+    <description>PharmacyManagementAPI</description>
     <properties>
         <java.version>19</java.version>
     </properties>

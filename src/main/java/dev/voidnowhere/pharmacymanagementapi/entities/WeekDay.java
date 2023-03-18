@@ -1,6 +1,6 @@
-package dev.voidnowhere.pharmacymanagement.entities;
+package dev.voidnowhere.pharmacymanagementapi.entities;
 
-import dev.voidnowhere.pharmacymanagement.enums.WeekDayEnum;
+import dev.voidnowhere.pharmacymanagementapi.enums.WeekDayEnum;
 import jakarta.persistence.*;
 
 import java.util.List;

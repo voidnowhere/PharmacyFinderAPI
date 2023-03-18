@@ -1,8 +1,8 @@
-package dev.voidnowhere.pharmacymanagement.controllers.v1;
+package dev.voidnowhere.pharmacymanagementapi.controllers.v1;
 
-import dev.voidnowhere.pharmacymanagement.entities.Pharmacy;
-import dev.voidnowhere.pharmacymanagement.enums.WeekDayEnum;
-import dev.voidnowhere.pharmacymanagement.repositories.PharmacyRepository;
+import dev.voidnowhere.pharmacymanagementapi.entities.Pharmacy;
+import dev.voidnowhere.pharmacymanagementapi.enums.WeekDayEnum;
+import dev.voidnowhere.pharmacymanagementapi.repositories.PharmacyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
