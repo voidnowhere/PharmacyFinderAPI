@@ -12,8 +12,8 @@ public class Pharmacy {
     private Long id;
     private String name;
     private String address;
-    private Float latitude;
-    private Float longitude;
+    private Double latitude;
+    private Double longitude;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Zone zone;
@@ -48,19 +48,19 @@ public class Pharmacy {
         this.address = address;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

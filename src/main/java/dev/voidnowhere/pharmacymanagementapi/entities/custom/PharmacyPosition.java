@@ -1,19 +1,19 @@
 package dev.voidnowhere.pharmacymanagementapi.entities.custom;
 
 public class PharmacyPosition {
-    private Float latitude;
-    private Float longitude;
+    private Double latitude;
+    private Double longitude;
 
-    public PharmacyPosition(Float latitude, Float longitude) {
+    public PharmacyPosition(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 }
