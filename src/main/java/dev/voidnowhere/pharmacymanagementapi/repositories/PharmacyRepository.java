@@ -23,5 +23,5 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
 
     @Query("select new dev.voidnowhere.pharmacymanagementapi.entities.custom.PharmacyPosition(p.latitude, p.longitude) from Pharmacy p " +
             "where p.id = :id")
-    PharmacyPosition getPosition(Long id);
+    PharmacyPosition getPositionById(Long id);
 }

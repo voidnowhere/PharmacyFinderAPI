@@ -2,7 +2,7 @@ package dev.voidnowhere.pharmacymanagementapi.controllers.v1;
 
 import dev.voidnowhere.pharmacymanagementapi.entities.Pharmacy;
 import dev.voidnowhere.pharmacymanagementapi.entities.custom.PharmacyPosition;
-import dev.voidnowhere.pharmacymanagementapi.repositories.PharmacyRepository;
+import dev.voidnowhere.pharmacymanagementapi.services.PharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +15,15 @@ import java.util.Optional;
 @RequestMapping("v1/pharmacies")
 public class PharmacyController {
     @Autowired
-    private PharmacyRepository pharmacyRepository;
+    private PharmacyService pharmacyService;
 
     @GetMapping("/{id}")
     public Optional<Pharmacy> show(@PathVariable Long id) {
-        return pharmacyRepository.findById(id);
+        return pharmacyService.findById(id);
     }
 
     @GetMapping("/{id}/position")
     public PharmacyPosition position(@PathVariable Long id) {
-        return pharmacyRepository.getPosition(id);
+        return pharmacyService.getPositionById(id);
     }
 }

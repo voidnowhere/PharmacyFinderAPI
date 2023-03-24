@@ -2,8 +2,8 @@ package dev.voidnowhere.pharmacymanagementapi.controllers.v1;
 
 import dev.voidnowhere.pharmacymanagementapi.entities.City;
 import dev.voidnowhere.pharmacymanagementapi.entities.Zone;
-import dev.voidnowhere.pharmacymanagementapi.repositories.CityRepository;
-import dev.voidnowhere.pharmacymanagementapi.repositories.ZoneRepository;
+import dev.voidnowhere.pharmacymanagementapi.services.CityService;
+import dev.voidnowhere.pharmacymanagementapi.services.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +16,17 @@ import java.util.List;
 @RequestMapping("v1/cities")
 public class CityController {
     @Autowired
-    private CityRepository cityRepository;
+    private CityService cityService;
     @Autowired
-    private ZoneRepository zoneRepository;
+    private ZoneService zoneService;
 
     @GetMapping
     public List<City> index() {
-        return cityRepository.findAll();
+        return cityService.findAll();
     }
 
     @GetMapping("/{id}/zones")
     public List<Zone> zones(@PathVariable Long id) {
-        return zoneRepository.findAllByCityId(id);
+        return zoneService.findAllByCityId(id);
     }
 }
