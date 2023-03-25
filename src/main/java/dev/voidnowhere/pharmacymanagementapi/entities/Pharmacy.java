@@ -2,6 +2,9 @@ package dev.voidnowhere.pharmacymanagementapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -10,12 +13,23 @@ public class Pharmacy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(nullable = false)
     private String name;
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(nullable = false)
     private String address;
+    @NotNull
+    @Column(nullable = false)
     private Double latitude;
+    @NotNull
+    @Column(nullable = false)
     private Double longitude;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Zone zone;
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
