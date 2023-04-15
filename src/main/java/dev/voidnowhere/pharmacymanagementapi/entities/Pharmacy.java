@@ -23,10 +23,10 @@ public class Pharmacy {
     private String address;
     @NotNull
     @Column(nullable = false)
-    private Double latitude;
+    private Float latitude;
     @NotNull
     @Column(nullable = false)
-    private Double longitude;
+    private Float longitude;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
@@ -62,19 +62,19 @@ public class Pharmacy {
         this.address = address;
     }
 
-    public Double getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
