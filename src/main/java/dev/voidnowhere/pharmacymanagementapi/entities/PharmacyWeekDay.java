@@ -1,6 +1,8 @@
 package dev.voidnowhere.pharmacymanagementapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalTime;
 
@@ -10,14 +12,37 @@ public class PharmacyWeekDay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Pharmacy pharmacy;
     @ManyToOne
+    @JoinColumn(nullable = false)
     private WeekDay weekDay;
+    @NotNull
+    @Column(nullable = false)
     private LocalTime firstShiftOpens;
+    @NotNull
+    @Column(nullable = false)
     private LocalTime firstShiftCloses;
+    @NotNull
+    @Column(nullable = false)
     private LocalTime secondShiftOpens;
+    @NotNull
+    @Column(nullable = false)
     private LocalTime secondShiftCloses;
+
+    public PharmacyWeekDay() {
+    }
+
+    public PharmacyWeekDay(Pharmacy pharmacy, WeekDay weekDay, LocalTime firstShiftOpens, LocalTime firstShiftCloses, LocalTime secondShiftOpens, LocalTime secondShiftCloses) {
+        this.pharmacy = pharmacy;
+        this.weekDay = weekDay;
+        this.firstShiftOpens = firstShiftOpens;
+        this.firstShiftCloses = firstShiftCloses;
+        this.secondShiftOpens = secondShiftOpens;
+        this.secondShiftCloses = secondShiftCloses;
+    }
 
     public Long getId() {
         return id;

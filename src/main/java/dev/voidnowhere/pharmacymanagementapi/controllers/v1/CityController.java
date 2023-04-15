@@ -2,13 +2,12 @@ package dev.voidnowhere.pharmacymanagementapi.controllers.v1;
 
 import dev.voidnowhere.pharmacymanagementapi.entities.City;
 import dev.voidnowhere.pharmacymanagementapi.entities.Zone;
-import dev.voidnowhere.pharmacymanagementapi.repositories.CityRepository;
-import dev.voidnowhere.pharmacymanagementapi.repositories.ZoneRepository;
+import dev.voidnowhere.pharmacymanagementapi.services.v1.CityService;
+import dev.voidnowhere.pharmacymanagementapi.services.v1.ZoneService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,17 +15,42 @@ import java.util.List;
 @RequestMapping("v1/cities")
 public class CityController {
     @Autowired
-    private CityRepository cityRepository;
+    private CityService cityService;
     @Autowired
-    private ZoneRepository zoneRepository;
+    private ZoneService zoneService;
 
     @GetMapping
-    public List<City> index() {
-        return cityRepository.findAll();
+    public ResponseEntity<List<City>> index() {
+        return cityService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<City> show(@PathVariable Long id) {
+        return cityService.findById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> store(@Valid @RequestBody City city) {
+        return cityService.save(city);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@Valid @RequestBody City city) {
+        return cityService.update(city);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        return cityService.delete(id);
     }
 
     @GetMapping("/{id}/zones")
-    public List<Zone> zones(@PathVariable Long id) {
-        return zoneRepository.findAllByCityId(id);
+    public ResponseEntity<List<Zone>> zones(@PathVariable Long id) {
+        return zoneService.findAllByCityId(id);
+    }
+
+    @PostMapping("/{id}/zones")
+    public ResponseEntity<?> storeZone(@PathVariable Long id, @Valid @RequestBody Zone zone) {
+        return zoneService.save(id, zone);
     }
 }

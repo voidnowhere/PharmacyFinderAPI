@@ -1,5 +1,6 @@
 package dev.voidnowhere.pharmacymanagementapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.voidnowhere.pharmacymanagementapi.enums.WeekDayEnum;
 import jakarta.persistence.*;
 
@@ -10,8 +11,10 @@ public class WeekDay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     @Enumerated(EnumType.STRING)
     private WeekDayEnum weekDay;
+    @JsonIgnore
     @OneToMany(mappedBy = "weekDay")
     private List<PharmacyWeekDay> pharmacies;
 

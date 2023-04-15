@@ -1,10 +1,14 @@
 package dev.voidnowhere.pharmacymanagementapi.entities.custom;
 
-public class PharmacyPosition {
+import jakarta.validation.constraints.NotNull;
+
+public class Position {
+    @NotNull
     private Double latitude;
+    @NotNull
     private Double longitude;
 
-    public PharmacyPosition(Double latitude, Double longitude) {
+    public Position(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -13,7 +17,15 @@ public class PharmacyPosition {
         return latitude;
     }
 
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
     public Double getLongitude() {
         return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
