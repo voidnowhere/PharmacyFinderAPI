@@ -4,7 +4,7 @@ import dev.voidnowhere.pharmacymanagementapi.entities.City;
 import dev.voidnowhere.pharmacymanagementapi.entities.Zone;
 import dev.voidnowhere.pharmacymanagementapi.repositories.CityRepository;
 import dev.voidnowhere.pharmacymanagementapi.repositories.ZoneRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -13,12 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class ZoneService implements IDao<Zone, Long> {
-    @Autowired
-    private ZoneRepository zoneRepository;
-    @Autowired
-    private CityRepository cityRepository;
+    private final ZoneRepository zoneRepository;
+    private final CityRepository cityRepository;
 
     public ResponseEntity<List<Zone>> findAllByCityId(Long id) {
         List<Zone> zones = zoneRepository.findAllByCityId(id);

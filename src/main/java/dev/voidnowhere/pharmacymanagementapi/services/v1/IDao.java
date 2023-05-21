@@ -21,7 +21,9 @@ public interface IDao<T, ID> {
         return ResponseEntity.badRequest().build();
     }
 
-    ResponseEntity<?> update(T t);
+    default ResponseEntity<?> update(T t) {
+        return ResponseEntity.badRequest().build();
+    }
 
     default ResponseEntity<Void> delete(ID id) {
         return ResponseEntity.badRequest().build();

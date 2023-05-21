@@ -5,19 +5,18 @@ import dev.voidnowhere.pharmacymanagementapi.entities.Zone;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.CityService;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.ZoneService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/cities")
+@RequestMapping("api/v1/cities")
 public class CityController {
-    @Autowired
-    private CityService cityService;
-    @Autowired
-    private ZoneService zoneService;
+    private final CityService cityService;
+    private final ZoneService zoneService;
 
     @GetMapping
     public ResponseEntity<List<City>> index() {

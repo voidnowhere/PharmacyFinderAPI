@@ -3,9 +3,17 @@ package dev.voidnowhere.pharmacymanagementapi.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.voidnowhere.pharmacymanagementapi.enums.WeekDayEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class WeekDay {
     @Id
@@ -13,32 +21,8 @@ public class WeekDay {
     private Long id;
     @Column(unique = true)
     @Enumerated(EnumType.STRING)
-    private WeekDayEnum weekDay;
+    private WeekDayEnum name;
     @JsonIgnore
     @OneToMany(mappedBy = "weekDay")
     private List<PharmacyWeekDay> pharmacies;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public WeekDayEnum getWeekDay() {
-        return weekDay;
-    }
-
-    public void setWeekDay(WeekDayEnum weekDay) {
-        this.weekDay = weekDay;
-    }
-
-    public List<PharmacyWeekDay> getPharmacies() {
-        return pharmacies;
-    }
-
-    public void setPharmacies(List<PharmacyWeekDay> pharmacies) {
-        this.pharmacies = pharmacies;
-    }
 }

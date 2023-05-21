@@ -1,26 +1,31 @@
 package dev.voidnowhere.pharmacymanagementapi.controllers.v1;
 
-import dev.voidnowhere.pharmacymanagementapi.entities.Pharmacy;
-import dev.voidnowhere.pharmacymanagementapi.entities.PharmacyWeekDay;
+import dev.voidnowhere.pharmacymanagementapi.dtos.PharmacyDTO;
 import dev.voidnowhere.pharmacymanagementapi.entities.custom.Position;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.PharmacyService;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.PharmacyWeekDayService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/pharmacies")
+@RequestMapping("api/v1/pharmacies")
 public class PharmacyController {
-    @Autowired
-    private PharmacyService pharmacyService;
-    @Autowired
-    private PharmacyWeekDayService pharmacyWeekDayService;
+    private final PharmacyService pharmacyService;
+    private final PharmacyWeekDayService pharmacyWeekDayService;
+
+    @GetMapping("/my")
+    public ResponseEntity<PharmacyDTO> myPharmacy(Principal principal) {
+        return pharmacyService.myPharmacy(principal);
+    }
 
     @PutMapping
-    public ResponseEntity<?> update(@Valid @RequestBody Pharmacy pharmacy) {
-        return pharmacyService.update(pharmacy);
+    public ResponseEntity<?> update(Principal principal, @Valid @RequestBody PharmacyDTO pharmacy) {
+        return pharmacyService.update(principal, pharmacy);
     }
 
     @DeleteMapping("/{id}")
@@ -34,12 +39,7 @@ public class PharmacyController {
     }
 
     @GetMapping("/{id}/weekdays")
-    public ResponseEntity<?> weekdays(@PathVariable Long id) {
-        return pharmacyWeekDayService.findAllByPharmacyId(id);
-    }
-
-    @PutMapping("/{id}/weekdays")
-    public ResponseEntity<?> updateWeekday(@Valid @RequestBody PharmacyWeekDay pharmacyWeekDay) {
-        return pharmacyWeekDayService.update(pharmacyWeekDay);
+    public ResponseEntity<?> weekdays(Principal principal, @PathVariable Long id) {
+        return pharmacyWeekDayService.findAllByPharmacyId(principal, id);
     }
 }
