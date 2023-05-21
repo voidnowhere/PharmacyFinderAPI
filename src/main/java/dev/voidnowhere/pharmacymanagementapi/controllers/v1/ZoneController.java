@@ -6,19 +6,19 @@ import dev.voidnowhere.pharmacymanagementapi.entities.custom.Position;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.PharmacyService;
 import dev.voidnowhere.pharmacymanagementapi.services.v1.ZoneService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/zones")
+@RequestMapping("api/v1/zones")
 public class ZoneController {
-    @Autowired
-    private ZoneService zoneService;
-    @Autowired
-    private PharmacyService pharmacyService;
+    private final ZoneService zoneService;
+    private final PharmacyService pharmacyService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Zone> show(@PathVariable Long id) {
@@ -48,7 +48,7 @@ public class ZoneController {
     }
 
     @PostMapping("/{id}/pharmacies")
-    public ResponseEntity<?> storePharmacy(@PathVariable Long id, @Valid @RequestBody Pharmacy pharmacy) {
-        return pharmacyService.save(id, pharmacy);
+    public ResponseEntity<?> storePharmacy(Principal principal, @PathVariable Long id, @Valid @RequestBody Pharmacy pharmacy) {
+        return pharmacyService.save(principal, id, pharmacy);
     }
 }

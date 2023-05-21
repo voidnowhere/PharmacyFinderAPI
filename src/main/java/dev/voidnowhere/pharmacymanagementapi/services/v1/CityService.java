@@ -2,7 +2,7 @@ package dev.voidnowhere.pharmacymanagementapi.services.v1;
 
 import dev.voidnowhere.pharmacymanagementapi.entities.City;
 import dev.voidnowhere.pharmacymanagementapi.repositories.CityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class CityService implements IDao<City, Long> {
-    @Autowired
-    private CityRepository cityRepository;
+    private final CityRepository cityRepository;
 
     @Override
     public ResponseEntity<List<City>> findAll() {
@@ -49,7 +49,7 @@ public class CityService implements IDao<City, Long> {
     @Override
     public ResponseEntity<?> update(City city) {
         Optional<City> optionalCity = cityRepository.findById(city.getId());
-        if (optionalCity.isEmpty()){
+        if (optionalCity.isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "city not found"));
         }
         if (cityRepository.existsByNameAndIdNot(city.getName(), city.getId())) {
