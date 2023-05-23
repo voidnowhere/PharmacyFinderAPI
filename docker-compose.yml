@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: pharmacy_management
+    ports:
+      - "3307:3306"
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8000:80"
+    depends_on:
+      - mysql
+  back_dev:
+    image: openjdk:20-jdk
+    stdin_open: true
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
