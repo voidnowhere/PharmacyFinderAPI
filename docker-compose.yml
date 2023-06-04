@@ -18,7 +18,7 @@ services:
     depends_on:
       - mysql
   back_dev:
-    image: openjdk:20-jdk
+    image: openjdk:17.0.2-jdk
     stdin_open: true
     working_dir: /app
     ports:
