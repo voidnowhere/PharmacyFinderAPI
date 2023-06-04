@@ -17,7 +17,7 @@ springdoc:
     path: /swagger-ui
 application:
   security:
-    allowed-origin: http://localhost:5173
+    allowed-origin: ${ALLOWED_ORIGIN}
     jwt:
-      secret-key: 6250655368566D597133743677397A24432646294A404D635166546A576E5A72
-      expiration: 86400000 # 1 day
+      secret-key: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
